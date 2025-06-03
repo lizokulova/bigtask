@@ -76,6 +76,35 @@ void Gauss_blur(unsigned char *col, unsigned char *blr_pic, int width, int heigh
         } 
    return; 
 } 
+//оператор Робертса
+void roberts_alg(unsigned char *bw_pic, int width, int height) {
+    unsigned char *edges = (unsigned char *)malloc(width * height);
+    const int Gx_kernel[2][2] = {{1, 0}, {0, -1}};  // Диагональ \
+    const int Gy_kernel[2][2] = {{0, 1}, {-1, 0}};  // Диагональ /
+    int x, y;
+    for (y = 0; y < height-1; y++) {
+        for (x = 0; x < width-1; x++) {
+            int gx = 0, gy = 0;
+            for (int ky = 0; ky < 2; ky++) {
+                for (int kx = 0; kx < 2; kx++) {
+                    int idx = (y + ky) * width + (x + kx);
+                    gx += bw_pic[idx] * Gx_kernel[ky][kx];
+                    gy += bw_pic[idx] * Gy_kernel[ky][kx];
+                }
+            }
+            float magnitude = sqrtf(gx * gx + gy * gy);
+            int edge_val = (int)(magnitude);
+            if (edge_val > 255) edge_val = 255;
+            edges[y * width + x] = (unsigned char)edge_val;
+        }
+    }
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
+            if (y < height - 1 && x < width - 1) bw_pic[y * width + x] = edges[y * width + x];
+        }
+    }
+    free(edges);
+}
 
 //  Место для экспериментов
 void color(unsigned char *blr_pic, unsigned char *res, int size)
