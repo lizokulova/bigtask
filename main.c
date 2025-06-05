@@ -9,7 +9,7 @@ typedef struct DSU{
     int *rank;
     int size;
 }DSU;
-
+ 
 // Инициализация DSU
 void initDSU(DSU *dsu, int size){
     dsu->parent = (int *)malloc(size*sizeof(int));
