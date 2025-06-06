@@ -249,16 +249,6 @@ int main()
     write_png("gauss.png", finish, width, height);
 /*
     // Пример использования
-      int width = 5;
-      int height = 5;
-      unsigned char bw_pic[] = {
-          100, 100, 105, 200, 200,
-          100, 102, 110, 200, 200,
-          100, 100, 105, 200, 200,
-          50,  50,  55, 210, 210,
-          50,  50,  50, 210, 210
-      };
-      
       int threshold = 10; // Максимальная разница в цвете
       
       findConnectedComponents(bw_pic, width, height, threshold);
@@ -277,7 +267,7 @@ int main()
     
     // выписали результат
     write_png("picture_out.png", finish, width, height); 
-    */
+*/
     // не забыли почистить память!
     free(bw_pic); 
     free(blr_pic); 
