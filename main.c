@@ -192,7 +192,7 @@ void Gauss_blur(unsigned char *col, unsigned char *blr_pic, int width, int heigh
     printf("blur is done\n");
    return;
 }
-//оператор Робертса
+//фильтр Робертса
 void roberts_alg(unsigned char *bw_pic, int width, int height) {
     unsigned char *edges = (unsigned char *)malloc(width * height);
     int Gx_kernel[2][2] = {{1, 0}, {0, -1}};  // Диагональ 1
